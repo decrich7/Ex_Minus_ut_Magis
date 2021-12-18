@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User, Item, Purchase, Referral
+from .models import User, Item, Purchase
 
 
 # Register your models here.
@@ -14,10 +14,6 @@ class UserAdmin(admin.ModelAdmin):
 class ItemAdmin(admin.ModelAdmin):
     list_display = ("id", "name", "price", "category_name", "subcategory_name")
 
-
-@admin.register(Referral)
-class ReferralAdmin(admin.ModelAdmin):
-    list_display = ("id", "referrer_id")
 
 
 @admin.register(Purchase)
