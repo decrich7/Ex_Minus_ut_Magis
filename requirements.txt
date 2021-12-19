@@ -3,5 +3,5 @@ aiogram~=2.7
 aioredis>=1.3.1,<2.0
 environs~=9.3.2
 pyqiwi~=0.2.0
-
+qiwipy
 # scp -i home_wear.pem -r PycharmProjects\Ex Minus ut Magis ubuntu@18.135.29.180:/home/ubuntu
