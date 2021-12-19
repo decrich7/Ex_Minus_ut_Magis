@@ -10,7 +10,7 @@ from utils.misc.qiwi import Payment, NoPaymentFound, NotEnoughMoney
 
 @dp.callback_query_handler(text="cancel", state="qiwi")
 async def cancel_payment(call: types.CallbackQuery, state: FSMContext):
-    await call.message.edit_text("Отменено")
+    await call.message.edit_text("Отменено 😔")
     await state.finish()
 
 
@@ -31,6 +31,10 @@ async def approve_payment(call: types.CallbackQuery, state: FSMContext):
     else:
         await call.message.answer("Успешно оплачено")
         id_buy = random.randint(10000, 90000)
+        await call.message.answer(f'Отлично!\n'
+                                  f'Для того чтобы получить свой перекус просто предоставте этот код:\n'
+                                  f'     {id_buy}\n'
+                                  f'После получения, код будет анулирован')
         await db.add_inf_tovar(data['type'], str(id_buy), call.message.chat.id)
     await call.message.edit_reply_markup()
     await state.finish()

@@ -6,12 +6,12 @@ paid_keyboard = InlineKeyboardMarkup(
     inline_keyboard=[
         [
             InlineKeyboardButton(
-                text="Оплатил",
+                text="Оплатил ✅",
                 callback_data="paid")
         ],
         [
             InlineKeyboardButton(
-                text="Отмена",
+                text="Отмена 🚫",
                 callback_data="cancel")
         ],
     ]

@@ -15,9 +15,11 @@ from keyboards.inline.callback_datas import buy
 from utils.misc.qiwi import Payment
 
 
-@dp.message_handler(text='Меню')
+@dp.message_handler(text='Меню 📝')
 async def bot_start(message: types.Message):
-    await message.answer('Выберите категорию ', reply_markup=choice)
+    await message.answer('Выберите категорию 📋', reply_markup=choice)
+
+
 
 
 @dp.callback_query_handler(buy.filter(item_name="pies_buy"))
@@ -25,14 +27,13 @@ async def buying(call: CallbackQuery, callback_data: dict, state: FSMContext):
     await call.answer(cache_time=60)
     prise = callback_data.get("prise")
     type = callback_data.get("type")
-    # await call.message.answer(prise)
     payment = Payment(amount=prise)
     payment.create()
     await call.message.answer(
         "\n".join([
-            f"Оплатите не менее {prise} руб. по номеру телефона или по адресу",
+            f"Оплатите не менее {prise} ₽ по номеру телефона или по адресу",
             hlink(config.WALLET_QIWI, url=payment.invoice),
-            "И обязательно укажите ID платежа:",
+            "Или обязательно укажите ID платежа:",
             hcode(payment.id)
         ]),
         reply_markup=paid_keyboard)
@@ -48,7 +49,7 @@ async def buying1(call: CallbackQuery, callback_data: dict, state: FSMContext):
     payment.create()
     await call.message.answer(
         "\n".join([
-            f"Оплатите не менее {prise} руб. по номеру телефона или по адресу",
+            f"Оплатите не менее {prise} ₽ по номеру телефона или по адресу",
             hlink(config.WALLET_QIWI, url=payment.invoice),
             "И обязательно укажите ID платежа:",
             hcode(payment.id)
@@ -67,7 +68,7 @@ async def buying2(call: CallbackQuery, callback_data: dict, state: FSMContext):
     payment.create()
     await call.message.answer(
         "\n".join([
-            f"Оплатите не менее {prise} руб. по номеру телефона или по адресу",
+            f"Оплатите не менее {prise} ₽ по номеру телефона или по адресу",
             hlink(config.WALLET_QIWI, url=payment.invoice),
             "И обязательно укажите ID платежа:",
             hcode(payment.id)

@@ -1,5 +1,4 @@
 import asyncpg
-from aiogram import types
 from aiogram.dispatcher.filters.builtin import CommandStart
 
 from keyboards.default import menu
@@ -15,13 +14,13 @@ from states.states import Test
 async def bot_start(message: types.Message):
     flag = await db.select_user(telegram_id=message.from_user.id)
     if flag is not None:
-        await message.answer(f'Привет, {message.from_user.full_name}!\n'
+        await message.answer(f'Привет, {message.from_user.full_name} 👋\n'
                              f'Вы уже зарегестрированы, теперь вы можете ознакомться с нашим меню', reply_markup=menu)
     else:
         await message.answer('Привет!\n'
                              'Это проект Online Столовая здесь вы можете быстро и удобно купить еду\n'
-                             'Для начала нужно авторизироваться\n'
-                             'Введите ваше имя и фамилию'
+                             'Для начала нужно авторизироваться 🤔\n'
+                             'Введите ваше Имя и Фамилию'
                              )
         try:
             user = await db.add_user(telegram_id=message.from_user.id,
